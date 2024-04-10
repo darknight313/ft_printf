@@ -6,7 +6,7 @@
 /*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 11:59:56 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/03/15 23:31:18 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/04/06 12:16:58 by ashirzad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,4 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result);
-}
-
-#include <stdio.h>
-int main(void)
-{
-	printf("%d\n", ft_atoi("-1"));
 }

@@ -6,13 +6,13 @@
 /*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:31:44 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/03/15 23:31:03 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/04/06 10:47:34 by ashirzad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_execute(va_list args, t_struct *obj)
+int	ft_execute(va_list args, t_obj *obj)
 {
 	int		count;
 

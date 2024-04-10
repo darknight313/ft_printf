@@ -6,33 +6,18 @@
 /*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:20:09 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/03/15 23:32:55 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:52:23 by ashirzad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./ft_printf.h"
+#include "../ft_printf.h"
 
-int	get_number(const char **format, t_struct *obj)
+void	create_obj(const char **format, t_obj *obj);
+int		get_number(const char **format, t_obj *obj);
+
+void	create_obj(const char **format, t_obj *obj)
 {
-	int	i;
-
-	i = 0;
-	if (*(*format) == '.')
-	{
-		obj->dot = 1;
-		(*format)++;
-	}
-	while (*(*format) >= '0' && *(*format) <= '9')
-	{
-		i = (i * 10) + (*(*format) - 48);
-		(*format)++;
-	}
-	return (i);
-}
-
-void	create_obj(const char **format, t_struct *obj)
-{
-	ft_memset(obj, 0, sizeof(t_struct));
+	ft_memset(obj, 0, sizeof(t_obj));
 	while (*(*format))
 	{
 		if (*(*format) == '-')
@@ -57,3 +42,22 @@ void	create_obj(const char **format, t_struct *obj)
 		(*format)++;
 	}
 }
+
+int	get_number(const char **format, t_obj *obj)
+{
+	int	i;
+
+	i = 0;
+	if (*(*format) == '.')
+	{
+		obj->dot = 1;
+		(*format)++;
+	}
+	while (*(*format) >= '0' && *(*format) <= '9')
+	{
+		i = (i * 10) + (*(*format) - 48);
+		(*format)++;
+	}
+	return (i);
+}
+

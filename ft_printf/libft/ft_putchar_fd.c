@@ -6,7 +6,7 @@
 /*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:02:39 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/03/15 23:31:43 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/04/06 12:17:44 by ashirzad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	ft_putchar_fd(char c, int fd)
 {
+	int	n;
+
+	n = 0;
 	if (fd >= 0)
-		return (write(fd, &c, 1));
-	return (0);
+		n = write(fd, &c, 1);
+	return (n);
 }

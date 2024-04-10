@@ -6,13 +6,13 @@
 /*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 11:33:09 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/03/15 23:30:50 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/04/08 12:06:15 by ashirzad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static int	space_check_s(int s, int n, t_struct *obj)
+static int	space_check_s(int s, int n, t_obj *obj)
 {
 	int	s_n;
 
@@ -24,41 +24,52 @@ static int	space_check_s(int s, int n, t_struct *obj)
 		if (n == 0)
 			s_n = (obj->width);
 		else
-			s_n = (obj->width - obj->per);
+		{
+			if (obj->per < n)
+				s_n = (obj->width - obj->per);
+			else
+				s_n = (obj->width - n);
+		}
 	}
 	return (s_n);
 }
 
-int	execute_s(char *str, t_struct *obj)
+static int	dot_check_s(int s, char *str, t_obj *obj)
+{
+	int	s_n;
+	int	i;
+
+	s_n = 0;
+	i = 0;
+	if (s == 10)
+		return (0);
+	else if (obj->per)
+	{
+
+		while (*str && i < obj->per)
+		{
+			s_n += ft_putchar_fd(*str, 1);
+			i++;
+			str++;
+		}
+	}
+	return (s_n);
+}
+
+int	execute_s(char *str, t_obj *obj)
 {
 	int	count;
 	int	s;
 
 	count = 0;
 	s = sum_formula(obj);
-
 	if (!s)
 		return (ft_putstr_fd(str, 1));
 	if (str == NULL)
-	{
 		str = "(null)";
-		if (s == 11)
-			count += ft_print(space_check_s(s, 0, obj), ' ');
-		else
-			count += ft_print(space_check_s(s, ft_strlen(str), obj), ' ');
-	}
-	else
-		count += ft_print(space_check_s(s, ft_strlen(str), obj), ' ');
+	count += ft_print(space_check_s(s, ft_strlen(str), obj), ' ');
 	if (obj->dot)
-	{
-		int size = obj->per;
-		while (size > 0 && *str)
-		{
-			count += ft_putchar_fd(*str, 1);
-			str++;
-			size--;
-		}
-	}
+		count += dot_check_s(s, str, obj);
 	else
 		count += ft_putstr_fd(str, 1);
 	if (obj->dash)

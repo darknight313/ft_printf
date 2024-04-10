@@ -6,7 +6,7 @@
 /*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 10:24:01 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/03/15 23:31:14 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:08:28 by ashirzad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,30 @@ int	get_digits(int long long n)
 	return (count);
 }
 
-int	sum_formula(t_struct *obj)
+int	get_digits_u(unsigned int n)
+{
+	char	str[12];
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		str[i++] = (n % 10) + '0';
+		n /= 10;
+	}
+	while (i > 0)
+	{
+		i--;
+		count++;
+	}
+	return (count);
+}
+
+int	sum_formula(t_obj *obj)
 {
 	int	count;
 
@@ -47,39 +70,30 @@ int	sum_formula(t_struct *obj)
 		count += 16;
 	if (obj->dash)
 		count += 100;
-	if (obj->hash)
-		count += 255;
 	return (count);
 }
 
-int	ft_putnbr(int n, t_struct *obj)
+int	ft_print(int n, int c)
 {
-	char	str[12];
-	int		i;
-	int		count;
+	int	count;
 
-	i = 0;
 	count = 0;
-	if (n == -2147483648 && obj->plus == 0)
-		return (write(1, "-2147483648", 11));
-	else if (n == -2147483648 && obj->plus  != 0)
-		return (write(1, "2147483648", 10));
-	if (n == 0)
-		return (ft_putchar_fd('0', 1));
-	if ((n < 0) && (obj->plus == 0))
+	while (n > 0)
 	{
-		count += ft_putchar_fd('-', 1);
-		n *= -1;
+		count += ft_putchar_fd(c, 1);
+		n--;
 	}
-	else if (n < 0 && obj->plus != 0)
-		n *= -1;
-	while (n != 0)
+	return (count);
+}
+
+int	hex_numbers(unsigned int n)
+{
+	int	count = 1;
+	while (n / 16)
 	{
-		str[i++] = (n % 10) + '0';
-		n /= 10;
+		n /= 16;
+		count++;
 	}
-	while (i > 0)
-		count += ft_putchar_fd(str[--i], 1);
 	return (count);
 }
 

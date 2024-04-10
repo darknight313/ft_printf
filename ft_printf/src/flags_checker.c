@@ -6,13 +6,13 @@
 /*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:49:32 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/03/15 23:30:59 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/04/06 10:48:42 by ashirzad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	space_check(int s, int n, t_struct *obj)
+int	space_check(int s, int n, t_obj *obj)
 {
 	int	s_n;
 
@@ -26,7 +26,7 @@ int	space_check(int s, int n, t_struct *obj)
 	return (s_n + obj->space);
 }
 
-int	plus_check(int n, t_struct *obj)
+int	plus_check(int n, t_obj *obj)
 {
 	int	p_n;
 
@@ -41,7 +41,7 @@ int	plus_check(int n, t_struct *obj)
 	return (p_n);
 }
 
-int	zero_check(int s, int n, t_struct *obj)
+int	zero_check(int s, int n, t_obj *obj)
 {
 	int	z_n;
 
@@ -53,7 +53,7 @@ int	zero_check(int s, int n, t_struct *obj)
 	return (z_n);
 }
 
-int	hash_check(t_struct *obj)
+int	hash_check(t_obj *obj)
 {
 	int	h_n;
 

@@ -6,21 +6,23 @@
 /*   By: ashirzad <ashirzad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:15:38 by ashirzad          #+#    #+#             */
-/*   Updated: 2024/03/15 23:31:47 by ashirzad         ###   ########.fr       */
+/*   Updated: 2024/04/06 12:42:26 by ashirzad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-int	ft_putstr_fd(char *s, int fd)
+int		ft_putstr_fd(char *s, int fd)
 {
-	int	count;
+	int	n;
 
-	count = 0;
+	n = 0;
+	if (!s)
+		return (write(1, "(null)", 6));
 	while (*s)
 	{
-		count += write(fd, s, 1);
+		n += write(fd, s, 1);
 		s++;
 	}
-	return (count);
+	return (n);
 }
